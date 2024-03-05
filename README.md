@@ -12,12 +12,12 @@ To ensure database schema evolution is hassle-free, Alembic auto-migrations are 
 
 #### clone repository
 ```bash
-git clone https://github.com/islamsalamamattar/fastapi_postgres_async_alembic.git
+git clone https://github.com/islamsalamamattar/moonshine-fastapi.git
 ```
 
 #### create venv & install requirements
 ```bash
-cd fastapi_postgres_async_alembic
+cd moonshine-fastapi
 pip install virtualenv
 virtualenv venv
 source venv/bin/activate
