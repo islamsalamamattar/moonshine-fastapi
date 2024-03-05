@@ -77,53 +77,53 @@ uvicorn app.main:app --reload
 
 ## Project structure
 ```
-moonshine-fastapi,
-├─ app,
-│  ├─ __init__.py,
-│  ├─ core,
-│  │  ├─ __init__.py,
-│  │  ├─ config.py,
-│  │  ├─ database.py,
-│  │  ├─ exceptions.py,
-│  │  └─ jwt.py,
-│  ├─ main.py,
-│  ├─ models,
-│  │  ├─ __init__.py,
-│  │  ├─ jwt.py,
-│  │  └─ user.py,
-│  ├─ routers,
-│  │  ├─ __init__.py,
-│  │  ├─ auth.py,
-│  │  └─ chat.py,
-│  ├─ schemas,
-│  │  ├─ chatcompletion.py,
-│  │  ├─ chatcompletionchunk.py,
-│  │  ├─ jwt.py,
-│  │  ├─ mail.py,
-│  │  └─ user.py,
-│  ├─ static,
-│  │  ├─ assets,
-│  │  │  ├─ css,
-│  │  │  ├─ img,
-│  │  │  ├─ js,
-│  │  │  ├─ less,
-│  │  │  ├─ plugins,
-│  │  │  └─ scss,
-│  │  └─ templates,
-│  │     ├─ chat.html,
-│  │     └─ landing.html,
-│  └─ utils,
-│     ├─ __init__.py,
-│     ├─ completions.py,
-│     ├─ completions_groq.py,
-│     ├─ hash.py,
-│     ├─ mail.py,
-│     ├─ prompt_example.py,
-│     ├─ prompt_templates.py,
-│     └─ utcnow.py,
-├─ env.py.example,
-├─ README.md,
-└─ requirements.txt,
+moonshine-fastapi
+├─ app
+│  ├─ __init__.py
+│  ├─ core
+│  │  ├─ __init__.py
+│  │  ├─ config.py
+│  │  ├─ database.py
+│  │  ├─ exceptions.py
+│  │  └─ jwt.py
+│  ├─ main.py
+│  ├─ models
+│  │  ├─ __init__.py
+│  │  ├─ jwt.py
+│  │  └─ user.py
+│  ├─ routers
+│  │  ├─ __init__.py
+│  │  ├─ auth.py
+│  │  └─ chat.py
+│  ├─ schemas
+│  │  ├─ chatcompletion.py
+│  │  ├─ chatcompletionchunk.py
+│  │  ├─ jwt.py
+│  │  ├─ mail.py
+│  │  └─ user.py
+│  ├─ static
+│  │  ├─ assets
+│  │  │  ├─ css
+│  │  │  ├─ img
+│  │  │  ├─ js
+│  │  │  ├─ less
+│  │  │  ├─ plugins
+│  │  │  └─ scss
+│  │  └─ templates
+│  │     ├─ chat.html
+│  │     └─ landing.html
+│  └─ utils
+│     ├─ __init__.py
+│     ├─ completions.py
+│     ├─ completions_groq.py
+│     ├─ hash.py
+│     ├─ mail.py
+│     ├─ prompt_example.py
+│     ├─ prompt_templates.py
+│     └─ utcnow.py
+├─ env.py.example
+├─ README.md
+└─ requirements.txt
 
 ```
 
