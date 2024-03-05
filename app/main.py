@@ -4,8 +4,6 @@ from contextlib import asynccontextmanager
 
 import uvicorn
 from app.routers.auth import router as auth_router
-from app.routers.blog import router as blog_router
-from app.routers.post import router as post_router
 from app.routers.chat import router as chat_router
 from app.core.config import settings
 from app.core.database import sessionmanager
@@ -57,8 +55,6 @@ async def root():
 # Routers
 app.include_router(auth_router)
 app.include_router(chat_router)
-app.include_router(blog_router)
-app.include_router(post_router)
 
 
 if __name__ == "__main__":
