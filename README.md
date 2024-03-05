@@ -1,4 +1,4 @@
-# Async FastAPI, JWT Authentication, PostgreSQL DB, Alembic Migrations boilerplate template
+# Moonshine FastAPI
 
 ## Description
 
