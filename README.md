@@ -80,13 +80,13 @@ uvicorn app.main:app --reload
 moonshine-fastapi
 ├─ app
 │  ├─ __init__.py
+│  ├─ main.py
 │  ├─ core
 │  │  ├─ __init__.py
 │  │  ├─ config.py
 │  │  ├─ database.py
 │  │  ├─ exceptions.py
 │  │  └─ jwt.py
-│  ├─ main.py
 │  ├─ models
 │  │  ├─ __init__.py
 │  │  ├─ jwt.py
