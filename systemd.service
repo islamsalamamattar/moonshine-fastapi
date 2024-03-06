@@ -1,0 +1,13 @@
+[Unit]
+Description=Moonshine fastapi
+After=network.target
+
+[Service]
+User=admin
+Group=admin
+WorkingDirectory=/home/admin/moonshine-fastapi
+ExecStart=/bin/bash -c 'source /home/admin/moonshine-fastapi/venv/bin/activate && /home/admin/moonshine-fastapi/venv/bin/uvicorn >
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
