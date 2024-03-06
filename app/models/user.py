@@ -21,8 +21,6 @@ class User(Base):
     created_at = Column(DateTime, nullable=False, server_default=func.now())
     is_disabled = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
-
-    blogs = relationship("Blog", foreign_keys="Blog.created_by")
     
     @classmethod
     async def create(cls, db: AsyncSession, **kwargs):

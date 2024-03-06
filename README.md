@@ -55,8 +55,11 @@ debug_logs="log.txt"
 
 SECRET_KEY = "Use output of openssl rand -hex 32"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-REFRESH_TOKEN_EXPIRES_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 180
+REFRESH_TOKEN_EXPIRES_MINUTES = 43200
+
+API_KEY = "sk-xxx"
+GROQ_API_KEY = "gsk_xxx"
 ```
 
 #### Intiate alembic migrations and update script
@@ -66,7 +69,7 @@ cat env.py.example > app/alembic/env.py
 ```
 #### Generate intial migration and upgrade head
 ```bash
-alembic revision --autogenerate -m "Create User, BlackListToken, Blog, and Post Tables"
+alembic revision --autogenerate -m "Create User & BlackListToken Tables"
 alembic upgrade head
 ```
 
