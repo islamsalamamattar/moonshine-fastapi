@@ -6,7 +6,7 @@ After=network.target
 User=admin
 Group=admin
 WorkingDirectory=/home/admin/moonshine-fastapi
-ExecStart=/bin/bash -c 'source /home/admin/moonshine-fastapi/venv/bin/activate && /home/admin/moonshine-fastapi/venv/bin/uvicorn >
+ExecStart=/bin/bash -c 'source /home/admin/moonshine-fastapi/venv/bin/activate && /home/admin/moonshine-fastapi/venv/bin/uvicorn app.main:app --reload --port 8080'
 Restart=always
 
 [Install]

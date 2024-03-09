@@ -1,17 +1,19 @@
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr, validator, UUID4
 from typing import Any, Optional
 from datetime import datetime
 
 class UserBase(BaseModel):
     username: str
     email: EmailStr
-    first_name: str
-    last_name: str
+    firstName: str
+    lastName: str
+    imgUrl: str
 
 class User(UserBase):
+    id: UUID4
     created_at: datetime
     is_disabled: bool
-    is_superuser: bool
+    is_onboarded: bool
 
     class Config:
         from_attributes = True
@@ -20,8 +22,8 @@ class UserCreate(UserBase):
     password: str
 
 class UserUpdate(BaseModel):
-    first_name: Optional[str] = None
-    last_name: Optional[str] = None
+    firstName: Optional[str] = None
+    lastName: Optional[str] = None
 
 class UserPasswordUpdate(BaseModel):
     password: Optional[str] = None

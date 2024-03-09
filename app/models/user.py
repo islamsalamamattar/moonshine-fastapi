@@ -13,14 +13,15 @@ class User(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid4)
     username = Column(String, index=True, nullable=False)
     email = Column(String, unique=True, index=True, nullable=False)
-    first_name = Column(String, nullable=True)
-    last_name = Column(String, nullable=True)
+    firstName = Column(String, nullable=True)
+    lastName = Column(String, nullable=True)
+    imageUrl = Column(String, nullable=True)
 
     password = Column(String, nullable=False)
 
     created_at = Column(DateTime, nullable=False, server_default=func.now())
     is_disabled = Column(Boolean, default=True)
-    is_superuser = Column(Boolean, default=False)
+    is_onboarded = Column(Boolean, default=False)
     
     @classmethod
     async def create(cls, db: AsyncSession, **kwargs):
@@ -85,14 +86,14 @@ class User(Base):
         return user
     
     @classmethod
-    async def makesuper(cls, db: AsyncSession, username: String):
+    async def onboard(cls, db: AsyncSession, username: String):
         # Fetch the user from the database
         user = await cls.find_by_username(db, username)
         if user is None:
             return None
 
         # Set is_disabled to True and update the database
-        user.is_superuser = True
+        user.is_onboarded = True
         await db.commit()
         await db.refresh(user)
         return user

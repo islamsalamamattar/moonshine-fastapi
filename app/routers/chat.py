@@ -84,12 +84,10 @@ async def stream_chat_response(
 
 @router.post("/app", response_model=Any)
 async def stream_chat_response(
-    request: Request,
+    token: str,
+    message: str,
     db: DBSessionDep
 ):
-    data = await request.json()
-    message = data['message']['text']
-
     username = "Salayem"
         # Your existing logic here...
     messages = [
@@ -112,9 +110,9 @@ async def stream_chat_response(
     reply = {
       "author": {
         "id": "4c2307ba-3d40-442f-b1ff-b271f6390",
-        "firstName": "Project",
-        "lastName": "Moonshine",
-        "imageUrl": "http://127.0.0.1:8000/static/assets/img/assistant.png"
+        "firstName": "Pet",
+        "lastName": "Pals",
+        "imageUrl": "http://project-moonshine.com/static/assets/img/assistant.png"
       },
       "id": id,
       "createdAt": created_at,
