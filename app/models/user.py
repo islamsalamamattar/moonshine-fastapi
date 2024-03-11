@@ -23,6 +23,8 @@ class User(Base):
     is_disabled = Column(Boolean, default=True)
     is_onboarded = Column(Boolean, default=False)
     
+    interactions = relationship("Interaction", back_populates="user")
+    
     @classmethod
     async def create(cls, db: AsyncSession, **kwargs):
         new_user = cls(**kwargs)

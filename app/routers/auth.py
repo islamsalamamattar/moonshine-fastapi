@@ -33,6 +33,7 @@ from app.schemas.user import (
     PasswordResetSchema,
     PasswordUpdateSchema,
     OldPasswordErrorSchema,
+    UserUpdate
 )
 from app.schemas.jwt import JwtTokenSchema, SuccessResponseScheme
 from app.schemas.mail import MailBodySchema, EmailSchema, MailTaskSchema
@@ -110,7 +111,10 @@ async def login(
 
     add_refresh_token_cookie(response=response, token=token_pair.refresh.token)
 
-    return {"token": token_pair.access.token}
+    return {
+        "token": token_pair.access.token,
+        "refresh": token_pair.refresh.token
+    }
 
 
 @router.post("/token/refresh")
@@ -197,3 +201,22 @@ async def password_update(
 
     return {"msg": "Successfully updated"}
 
+@router.post("/update", response_model=UserSchema)
+async def update_user(
+    data: UserUpdate,
+    token: str,
+    db: DBSessionDep,
+):
+    # Decode the access token to get the username
+    payload = await decode_access_token(token=token, db=db)
+    username = payload[SUB]
+
+    # Fetch the user from the database
+    user = await User.find_by_username(db=db, username=username)
+    if not user:
+        raise NotFoundException(detail="User not found")
+
+    # Update the user with the provided data
+    updated_user = await User.patch(db=db, username=username, **data.dict(exclude_unset=True))
+
+    return UserSchema.model_validate(updated_user.__dict__)

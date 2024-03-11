@@ -7,7 +7,7 @@ class UserBase(BaseModel):
     email: EmailStr
     firstName: str
     lastName: str
-    imgUrl: str
+    imageUrl: Optional[str]
 
 class User(UserBase):
     id: UUID4
@@ -24,6 +24,7 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     firstName: Optional[str] = None
     lastName: Optional[str] = None
+    imageUrl: Optional[str] = None
 
 class UserPasswordUpdate(BaseModel):
     password: Optional[str] = None
