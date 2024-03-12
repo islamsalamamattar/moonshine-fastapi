@@ -22,35 +22,8 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-
-@router.post("/generate/", response_model=ChatCompletionResponse)
-async def generate_chat_response(
-    token: str,
-    db: DBSessionDep,
-    messages: List[dict] = None,  # Assuming the messages format is provided in the request body
-):
-    """
-    Generate a chat response using the OpenAI API.
-    """
-    payload = await decode_access_token(token=token, db=db)
-    user = await User.find_by_username(db=db, username=payload[SUB])
-    if not user:
-        raise NotFoundException(detail="User not found")
-
-    try:
-        # Assuming messages are provided in the request body
-        if not messages:
-            raise HTTPException(status_code=400, detail="No messages provided")
-
-        # Generate chat response using OpenAI
-        response = await create_chat_completions(messages=messages)
-        return response
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
-
-@router.post("/app", response_model=Any)
-async def stream_chat_response(
+@router.post("/message", response_model=Any)
+async def chat_response(
     token: str,
     message: str,
     db: DBSessionDep
@@ -116,3 +89,66 @@ async def stream_chat_response(
     reply["author"] = author
     return reply
 
+
+@router.post("/history", response_model=Any)
+async def chat_history(
+    token: str,
+    db: DBSessionDep
+):
+    payload = await decode_access_token(db=db, token=token)
+    user = await User.find_by_username(db=db, username=payload['sub'])
+
+    if not user:
+        raise NotFoundException(detail="User not found")
+    
+    prompt_author = {
+        "id": user.id,
+        "firstName": user.firstName,
+        "lastName": user.lastName,
+        "imageUrl": user.imageUrl
+      }
+
+    response_author = {
+        "id": uuid.uuid4(),
+        "firstName": "Pet",
+        "lastName": "Pal",
+        "imageUrl": "app/static/assets/img/assistant2.png"
+      }
+
+    # Format the datetime as a string
+    created_at = int(datetime.now().timestamp() * 1000)
+    id = uuid.uuid4()
+
+    # Save Interaction instance
+    interactions = await Interaction.find_by_user_id(db=db, user_id=user.id)
+
+    messages = []
+
+    for interaction in interactions:
+
+        prompt = {
+            "id": id,
+            "createdAt": created_at,
+            "status": "seen",
+            "text": interaction.prompt,
+            "type": "text"
+        }
+        prompt["author"] = prompt_author
+
+        messages.append(prompt)
+
+
+        response = {
+            "id": id,
+            "createdAt": created_at,
+            "status": "seen",
+            "text": interaction.response,
+            "type": "text"
+        }
+        response["author"] = response_author
+
+        messages.append(response)
+
+    print(messages)
+
+    return messages

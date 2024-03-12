@@ -17,6 +17,7 @@ class Interaction(Base):
     total_tokens = Column(Integer, nullable=False)
     timestamp = Column(DateTime, nullable=False, server_default=func.now())
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
+    is_deleted = Column(Boolean, default=False)
 
     user = relationship("User", back_populates="interactions")
 
@@ -35,3 +36,9 @@ class Interaction(Base):
         await db.commit()
         await db.refresh(new_interaction)
         return new_interaction
+
+    @classmethod
+    async def find_by_user_id(cls, db: AsyncSession, user_id: UUID):
+        result = await db.execute(select(cls).filter(cls.user_id == user_id))
+        interactions = result.scalars().all()
+        return interactions
