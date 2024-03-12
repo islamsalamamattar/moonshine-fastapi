@@ -151,4 +151,4 @@ async def chat_history(
 
     print(messages)
 
-    return messages
+    return {'messages': messages, 'user_id': prompt_author["id"]}
