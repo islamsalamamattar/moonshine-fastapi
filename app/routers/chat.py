@@ -126,17 +126,6 @@ async def chat_history(
 
     for interaction in interactions:
 
-        prompt = {
-            "id": id,
-            "createdAt": created_at,
-            "status": "seen",
-            "text": interaction.prompt,
-            "type": "text"
-        }
-        prompt["author"] = prompt_author
-
-        messages.append(prompt)
-
 
         response = {
             "id": id,
@@ -148,6 +137,17 @@ async def chat_history(
         response["author"] = response_author
 
         messages.append(response)
+
+        prompt = {
+            "id": id,
+            "createdAt": created_at,
+            "status": "seen",
+            "text": interaction.prompt,
+            "type": "text"
+        }
+        prompt["author"] = prompt_author
+
+        messages.append(prompt)
 
     print(messages)
 

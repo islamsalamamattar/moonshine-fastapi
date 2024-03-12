@@ -39,6 +39,6 @@ class Interaction(Base):
 
     @classmethod
     async def find_by_user_id(cls, db: AsyncSession, user_id: UUID):
-        result = await db.execute(select(cls).filter(cls.user_id == user_id))
+        result = await db.execute(select(cls).filter(cls.user_id == user_id).order_by(cls.timestamp.desc()))
         interactions = result.scalars().all()
         return interactions
