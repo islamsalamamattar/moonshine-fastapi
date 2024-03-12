@@ -111,7 +111,7 @@ async def chat_history(
         "id": uuid.uuid4(),
         "firstName": "Pet",
         "lastName": "Pal",
-        "imageUrl": "https://project-moonshine.com/app/static/assets/img/assistant2.png"
+        "imageUrl": "https://project-moonshine.com/static/assets/img/assistant2.png"
       }
 
     # Format the datetime as a string
