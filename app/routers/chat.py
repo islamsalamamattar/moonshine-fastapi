@@ -115,7 +115,6 @@ async def chat_history(
 
     # Format the datetime as a string
     created_at = int(datetime.now().timestamp() * 1000)
-    id = uuid.uuid4()
 
     # Save Interaction instance
     interactions = await Interaction.find_by_user_id(db=db, user_id=user.id)
@@ -126,7 +125,7 @@ async def chat_history(
 
 
         response = {
-            "id": id,
+            "id": uuid.uuid4(),
             "createdAt": created_at,
             "status": "seen",
             "text": interaction.response,
@@ -137,7 +136,7 @@ async def chat_history(
         messages.append(response)
 
         prompt = {
-            "id": id,
+            "id": uuid.uuid4(),
             "createdAt": created_at,
             "status": "seen",
             "text": interaction.prompt,
@@ -146,7 +145,5 @@ async def chat_history(
         prompt["author"] = prompt_author
 
         messages.append(prompt)
-
-    print(messages)
 
     return {'messages': messages, 'user_id': prompt_author["id"]}
