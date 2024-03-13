@@ -22,6 +22,8 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
+assistant_id = uuid.uuid4()
+
 @router.post("/message", response_model=Any)
 async def chat_response(
     token: str,
@@ -80,7 +82,7 @@ async def chat_response(
         "type": "text"
     }
     response_author = {
-        "id": uuid.uuid4(),
+        "id": assistant_id,
         "firstName": "Pet",
         "lastName": "Pal",
         "imageUrl": "https://project-moonshine.com/static/assets/img/assistant2.png"
@@ -107,7 +109,7 @@ async def chat_history(
       }
 
     response_author = {
-        "id": uuid.uuid4(),
+        "id": assistant_id,
         "firstName": "Pet",
         "lastName": "Pal",
         "imageUrl": "https://project-moonshine.com/static/assets/img/assistant2.png"
