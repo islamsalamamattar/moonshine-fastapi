@@ -52,7 +52,7 @@ async def root():
 
 @app.get("/image")
 async def root():
-    return FileResponse("app/static/assets/img/assistant2.png")
+    return FileResponse("app/static/assets/img/Moonshine-logo6.png")
 
 
 
