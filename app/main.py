@@ -50,6 +50,10 @@ async def root():
 async def root():
     return FileResponse("app/static/templates/chat.html")
 
+@app.get("/image")
+async def root():
+    return FileResponse("app/static/assets/img/assistant2.png")
+
 
 
 # Routers
