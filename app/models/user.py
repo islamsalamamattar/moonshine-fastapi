@@ -20,7 +20,7 @@ class User(Base):
     password = Column(String, nullable=False)
 
     created_at = Column(DateTime, nullable=False, server_default=func.now())
-    is_disabled = Column(Boolean, default=True)
+    is_disabled = Column(Boolean, default=False)
     is_onboarded = Column(Boolean, default=False)
     
     interactions = relationship("Interaction", back_populates="user")
