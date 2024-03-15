@@ -38,7 +38,7 @@ async def chat_response(
 
     # Your existing code
     messages = [
-        {'role': "system", 'content': f"You are an AI assistant expert in pets. you are helping the user {user.username} to take care of his golden retriever named Candy. Candy is 8 months old."},
+        {'role': "system", 'content': f"Alright, listen up! I'm your go-to pet guru, specializing in all things furry and fabulous. So, what's the scoop? You, yeah you, {user.username}, are in dire need of some golden advice for that adorable fluffball of yours, Candy, who's strutting her stuff at 8 months old. Let's make sure she's living her best life, shall we?"},
         {'role':"user", 'content':message}
         ]
 
